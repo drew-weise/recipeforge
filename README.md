@@ -6,13 +6,15 @@ Users will be able to describe the type of recipe they want, receive a structure
 
 ## Problem Statement
 
-Finding a recipe that matches a particular craving, dietary preference, skill level, or occasion can require searching through numerous websites. RecipeForge will simplify this process by allowing users to describe what they want and receive a personalized recipe that can be edited and saved for future use.
+Finding a recipe that matches a specific craving, dietary preference, skill level, available ingredients, or occasion can require searching through numerous websites and comparing recipes from several different sources. Many existing recipe websites provide fixed recipes that may not match what a user wants, while generated recipes are often returned as unstructured text that is difficult to edit, organize, or save.
+
+RecipeForge will simplify this process by allowing users to describe the recipe they want and receive a personalized, structured recipe generated through an external AI service. Users will also be able to create recipes manually, edit generated or manually entered recipes, and save them to a personal recipe library. By keeping ingredients, instructions, and other recipe information as structured data, RecipeForge will provide one place where users can generate, manage, and revisit recipes that fit their individual needs.
 
 ## Minimum Viable Product
 
 The planned MVP will allow users to:
 
-- Register and sign in through a third-party identity provider
+- Register and sign into an account
 - Submit an idea for a recipe
 - Generate a structured recipe through an external API consumed by Java
 - Save generated recipes
@@ -21,6 +23,7 @@ The planned MVP will allow users to:
 - Delete recipes
 - Store ingredients and instructions as structured recipe data
 - Use the application through a responsive web interface
+- Add recipes without AI input at all
 
 ## Planned Technologies
 
@@ -37,64 +40,14 @@ The planned MVP will allow users to:
 - External AI API
 - HTML and CSS
 - AWS deployment
+- JUnit for testing
+- Log4J logging
 
-## Planned Data Model
-
-The application will include entities such as:
-
-- User
-- Recipe
-- Ingredient
-- Recipe ingredient
-- Instruction
-- Category or collection
-
-The database will include multiple one-to-many relationships. For example, one user may save multiple recipes, and one recipe may contain multiple instructions and recipe ingredients.
-
-## Project Structure
-
-```text
-recipeforge/
-├── pom.xml
-└── src/
-    └── main/
-        ├── java/
-        ├── resources/
-        └── webapp/
-            ├── index.jsp
-            └── WEB-INF/
-                └── web.xml
-```
-
-## Running the Project
-
-Detailed installation and configuration instructions will be added as development progresses.
-
-The application is built with Maven and deployed through Apache Tomcat.
-
-```bash
-mvn clean package
-```
-
-The generated WAR file will be located in the `target` directory.
-
-## Project Documentation
-
-Project planning materials will include:
-
-- Problem statement
-- User stories
-- MVP identification
-- Project schedule
-- Screen designs
-- Application flow
-- Weekly reflection statements
-- Design and code review notes
-- Architecture documentation
-
-## Project Status
-
-RecipeForge is currently in the initial planning and project-setup stage.
+## Design & Planning
+* [User Stories](DesignDocuments/UserStories.md)
+* [Screen Design](DesignDocuments/Screens.md)
+* [Project Plan](ProjectPlan.md)
+* [Journal](Journal.md)
 
 ## Author
 

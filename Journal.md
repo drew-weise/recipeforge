@@ -30,6 +30,8 @@ Weekly Reflections for RecipeForge
     Tasks Completed: 
     
     * Add files and folders to project such as the DesignDocuments folder, and Journal.md
+    * Create user stories
+    * Draft Wireframes
 
 #### Extra Notes
 
