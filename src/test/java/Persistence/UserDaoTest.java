@@ -3,7 +3,7 @@ package Persistence;
 import entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import util.Database;
+import Util.Database;
 
 import java.util.List;
 
@@ -22,17 +22,17 @@ class UserDaoTest {
     void getByIdSuccess() {
         User user = userDao.getById(1);
         assertNotNull(user);
-        assertEquals("Joe",  user.getFirstName());
+        assertEquals("Drew",  user.getUsername());
     }
 
     @Test
     void updateSuccess() {
         User userToUpdate = userDao.getById(1);
-        userToUpdate.setFirstName("John");
+        userToUpdate.setUsername("John");
         userDao.update(userToUpdate);
 
         User  updatedUser = userDao.getById(1);
-        assertEquals("John", updatedUser.getFirstName());
+        assertEquals("John", updatedUser.getUsername());
     }
 
     @Test
@@ -41,7 +41,7 @@ class UserDaoTest {
         int insertUserId = userDao.insert(user);
         assertNotEquals(0, insertUserId);
         User InsertedUser = userDao.getById(insertUserId);
-        assertEquals("Johnny", InsertedUser.getFirstName());
+        assertEquals("Johnny", InsertedUser.getUsername());
     }
 
     @Test
