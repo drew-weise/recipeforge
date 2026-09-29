@@ -22,7 +22,7 @@ class UserDaoTest {
     void getByIdSuccess() {
         User user = userDao.getById(1);
         assertNotNull(user);
-        assertEquals("Drew",  user.getUsername());
+        assertEquals("drew123",  user.getUsername());
     }
 
     @Test
