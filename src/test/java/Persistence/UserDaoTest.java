@@ -37,23 +37,23 @@ class UserDaoTest {
 
     @Test
     void insertSuccess() {
-        User user = new User("Johnny", "Appleseed", "JApple123");
+        User user = new User("Johnny123", "Appleseed@gmail.com", "JApple123");
         int insertUserId = userDao.insert(user);
         assertNotEquals(0, insertUserId);
         User InsertedUser = userDao.getById(insertUserId);
-        assertEquals("Johnny", InsertedUser.getUsername());
+        assertEquals("Johnny123", InsertedUser.getUsername());
     }
 
     @Test
     void delete() {
-        userDao.delete(userDao.getById(2));
-        assertNull(userDao.getById(2));
+        userDao.delete(userDao.getById(1));
+        assertNull(userDao.getById(1));
     }
 
     @Test
     void getAll() {
         List<User> users = userDao.getAll();
-        assertEquals(6, users.size());
+        assertEquals(2, users.size());
     }
 
     @Test
