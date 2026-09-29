@@ -1,5 +1,6 @@
 package Persistence;
 
+import Util.SessionFactoryProvider;
 import entity.User;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
