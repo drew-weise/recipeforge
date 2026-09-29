@@ -24,24 +24,29 @@ N/A
 - [x] Move recipe preferences to the Non-MVP section
 - [x] Write the initial project plan
 - [x] List the planned technologies and explain how they will be used
-- [ ] Create the first database design
-- [ ] Identify the relationships between User, Recipe, Ingredient, and Instruction
-- [ ] Create the development database
+- [x] Create the first database design
+- [x] Identify the relationships between User, Recipe, Ingredient, and RecipeIngredient
+- [x] Create the development database
+- [x] Create the User entity
 - [ ] Create the Recipe entity
 - [ ] Create the Ingredient entity
-- [ ] Create any supporting entities required by the database design
-- [ ] Create Hibernate configuration files for the development and test databases
-- [ ] Create a test database for unit testing
-- [ ] Create a generic DAO or individual DAOs for Recipe and Ingredient
-- [ ] Implement create, read, update, and delete operations for at least one entity
-- [ ] Write unit tests for the completed DAO
-- [ ] Add Log4j2 and replace debugging print statements with logging
-- [ ] Update the weekly reflection and time log
+- [ ] Create the RecipeIngredient entity
+- [x] Create Hibernate configuration files for the development and test databases
+- [x] Create a test database for unit testing
+- [x] Create a User DAO
+- [ ] Create DAOs for Recipe, Ingredient, and RecipeIngredient
+- [x] Implement create, read, update, and delete operations for User
+- [x] Write unit tests for the User DAO
+- [x] Add Log4j2 and replace debugging print statements with logging
+- [x] Update the weekly reflection and time log
 
 ### Week 5
 
-- [ ] Finish the initial entity classes and Hibernate mappings
-- [ ] Finish Recipe and Ingredient DAO operations
+- [ ] Create the Recipe entity
+- [ ] Create the Ingredient entity
+- [ ] Create the RecipeIngredient entity
+- [ ] Finish the Hibernate mappings and relationships
+- [ ] Create Recipe, Ingredient, and RecipeIngredient DAOs
 - [ ] Add DAO tests for successful operations and expected failures
 - [ ] Create sample database records for development and testing
 - [ ] Review the database design and correct relationship problems
