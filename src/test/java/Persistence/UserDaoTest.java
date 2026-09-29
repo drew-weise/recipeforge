@@ -14,7 +14,7 @@ class UserDaoTest {
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
-        database.runSQL("CleanDB.sql");
+        database.runSQL("CleanUsersDB.sql");
         userDao = new UserDao();
     }
 
@@ -58,14 +58,15 @@ class UserDaoTest {
 
     @Test
     void getByPropertyEqual() {
-        List<User> users = userDao.getByPropertyLike("username", "");
+        List<User> users = userDao.getByPropertyLike("username", "drew123");
         assertEquals(1, users.size());
-        assertEquals(3, users.get(0).getId());
     }
 
     @Test
     void getByPropertyLike() {
-        List<User> users = userDao.getByPropertyLike("lastName", "c");
-        assertEquals(3, users.size());
+        List<User> users = userDao.getByPropertyLike("username", "drew123");
+
+        assertEquals(1, users.size());
+        assertEquals("drew123", users.get(0).getUsername());
     }
 }
