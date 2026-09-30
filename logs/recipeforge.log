@@ -1,3 +1,21 @@
 [DEBUG] 2026-09-29 10:42:56.764 [main] UserDao - The list of users [entity.User@780129bc, entity.User@4d825dbe]
 [DEBUG] 2026-09-29 10:42:56.796 [main] UserDao - Searching for user with username = drew123
 [DEBUG] 2026-09-29 10:42:56.833 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-29 13:11:24.083 [main] UserDao - The list of users [entity.User@120411ec, entity.User@1a34a51e]
+[DEBUG] 2026-09-29 13:11:24.112 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-29 13:11:24.148 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:53:11.172 [main] UserDao - The list of users [entity.User@389a1e34, entity.User@5d9bb69b]
+[DEBUG] 2026-09-30 12:53:11.211 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:53:11.247 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:53:53.761 [main] UserDao - The list of users [entity.User@56478522, entity.User@5dd747c1]
+[DEBUG] 2026-09-30 12:53:53.790 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:53:53.827 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:54:00.103 [main] UserDao - The list of users [entity.User@6c519e47, entity.User@7573c7b5]
+[DEBUG] 2026-09-30 12:54:00.138 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:54:00.180 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:56:19.482 [main] UserDao - The list of users [entity.User@7d284f15, entity.User@cec590c, entity.User@1570cad0]
+[DEBUG] 2026-09-30 12:56:19.485 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:56:19.499 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:56:27.158 [main] UserDao - The list of users [entity.User@2ffa91dc, entity.User@6de610c6]
+[DEBUG] 2026-09-30 12:56:27.180 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 12:56:27.207 [main] UserDao - Searching for user with username = drew123
