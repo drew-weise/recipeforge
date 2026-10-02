@@ -14,13 +14,21 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 import java.util.List;
 
+/**
+ * Provides database operations for User entities.
+ *
+ * @author dweise
+ */
 public class UserDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Get user by id
+     * Retrieves a user by their database ID.
+     *
+     * @param id the user's database ID
+     * @return the matching user, or null if no user was found
      */
     public User getById(int id) {
         Session session = sessionFactory.openSession();
@@ -30,48 +38,59 @@ public class UserDao {
     }
 
     /**
-     * update user
-     * @param user  User to be updated
+     * Updates an existing user in the database.
+     *
+     * @param user the user to be updated
      */
     public void update(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.merge(user);
+
         transaction.commit();
         session.close();
     }
 
     /**
-     * insert a new user
-     * @param user  User to be inserted
+     * Inserts a new user into the database.
+     *
+     * @param user the user to be inserted
+     * @return the generated database ID
      */
     public int insert(User user) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.persist(user);
+
         transaction.commit();
         id = user.getUserId();
         session.close();
+
         return id;
     }
 
     /**
-     * Delete a user
-     * @param user User to be deleted
+     * Deletes a user from the database.
+     *
+     * @param user the user to be deleted
      */
     public void delete(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.delete(user);
+
         transaction.commit();
         session.close();
     }
 
-
-    /** Return a list of all users
+    /**
+     * Retrieves all users from the database.
      *
-     * @return All users
+     * @return a list containing all users
      */
     public List<User> getAll() {
         try (Session session = sessionFactory.openSession()) {
@@ -90,8 +109,15 @@ public class UserDao {
     }
 
     /**
-     * Get user by property (exact match)
-     * sample usage: getByPropertyEqual("lastname", "Curry")
+     * Retrieves users whose specified property exactly matches a value.
+     *
+     * <p>Property names must be Java entity property names, such as
+     * {@code displayName}, rather than database column names such as
+     * {@code display_name}.</p>
+     *
+     * @param propertyName the User property to search
+     * @param value the exact value to match
+     * @return a list of users matching the property value
      */
     public List<User> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
@@ -101,21 +127,31 @@ public class UserDao {
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
-        query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<User> users = session.createSelectionQuery( query ).getResultList();
+
+        query.select(root)
+                .where(builder.equal(root.get(propertyName), value));
+
+        List<User> users =
+                session.createSelectionQuery(query).getResultList();
 
         session.close();
         return users;
     }
 
     /**
-     * Get user by property (like)
-     * sample usage: getByPropertyLike("lastname", "C")
+     * Retrieves users whose specified property contains a value.
+     *
+     * <p>The search uses a SQL {@code LIKE} comparison and automatically
+     * searches for the value anywhere within the property.</p>
+     *
+     * @param propertyName the User property to search
+     * @param value the partial value to search for
+     * @return a list of users matching the partial value
      */
     public List<User> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for user with {} = {}",  propertyName, value);
+        logger.debug("Searching for user with {} LIKE {}", propertyName, value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
@@ -124,10 +160,10 @@ public class UserDao {
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<User> users = session.createQuery( query ).getResultList();
+        List<User> users =
+                session.createQuery(query).getResultList();
+
         session.close();
         return users;
     }
-
 }
-

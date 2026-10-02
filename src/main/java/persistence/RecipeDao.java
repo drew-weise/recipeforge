@@ -14,13 +14,21 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 import java.util.List;
 
+/**
+ * Provides database operations for Recipe entities.
+ *
+ * @author dweise
+ */
 public class RecipeDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Get recipe by id
+     * Retrieves a recipe by its database ID.
+     *
+     * @param id the recipe's database ID
+     * @return the matching recipe, or null if no recipe was found
      */
     public Recipe getById(int id) {
         Session session = sessionFactory.openSession();
@@ -30,48 +38,59 @@ public class RecipeDao {
     }
 
     /**
-     * update recipe
-     * @param recipe  Recipe to be updated
+     * Updates an existing recipe in the database.
+     *
+     * @param recipe the recipe to be updated
      */
     public void update(Recipe recipe) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.merge(recipe);
+
         transaction.commit();
         session.close();
     }
 
     /**
-     * insert a new recipe
-     * @param recipe  Recipe to be inserted
+     * Inserts a new recipe into the database.
+     *
+     * @param recipe the recipe to be inserted
+     * @return the generated database ID
      */
     public int insert(Recipe recipe) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.persist(recipe);
+
         transaction.commit();
         id = recipe.getRecipeId();
         session.close();
+
         return id;
     }
 
     /**
-     * Delete a recipe
-     * @param recipe Recipe to be deleted
+     * Deletes a recipe from the database.
+     *
+     * @param recipe the recipe to be deleted
      */
     public void delete(Recipe recipe) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.delete(recipe);
+
         transaction.commit();
         session.close();
     }
 
-
-    /** Return a list of all recipes
+    /**
+     * Retrieves all recipes from the database.
      *
-     * @return All recipes
+     * @return a list containing all recipes
      */
     public List<Recipe> getAll() {
         try (Session session = sessionFactory.openSession()) {
@@ -90,8 +109,15 @@ public class RecipeDao {
     }
 
     /**
-     * Get recipe by property (exact match)
-     * sample usage: getByPropertyEqual("lastname", "Curry")
+     * Retrieves recipes whose specified property exactly matches a value.
+     *
+     * <p>Property names must be Java entity property names, such as
+     * {@code recipeTitle}, rather than database column names such as
+     * {@code title}.</p>
+     *
+     * @param propertyName the Recipe property to search
+     * @param value the exact value to match
+     * @return a list of recipes matching the property value
      */
     public List<Recipe> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
@@ -101,21 +127,31 @@ public class RecipeDao {
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
         Root<Recipe> root = query.from(Recipe.class);
-        query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<Recipe> recipes = session.createSelectionQuery( query ).getResultList();
+
+        query.select(root)
+                .where(builder.equal(root.get(propertyName), value));
+
+        List<Recipe> recipes =
+                session.createSelectionQuery(query).getResultList();
 
         session.close();
         return recipes;
     }
 
     /**
-     * Get recipe by property (like)
-     * sample usage: getByPropertyLike("lastname", "C")
+     * Retrieves recipes whose specified property contains a value.
+     *
+     * <p>The search uses a SQL {@code LIKE} comparison and searches
+     * for the value anywhere within the property.</p>
+     *
+     * @param propertyName the Recipe property to search
+     * @param value the partial value to search for
+     * @return a list of recipes matching the partial value
      */
     public List<Recipe> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for recipe with {} = {}",  propertyName, value);
+        logger.debug("Searching for recipe with {} LIKE {}", propertyName, value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
@@ -124,10 +160,10 @@ public class RecipeDao {
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<Recipe> recipes = session.createQuery( query ).getResultList();
+        List<Recipe> recipes =
+                session.createQuery(query).getResultList();
+
         session.close();
         return recipes;
     }
-
 }
-
