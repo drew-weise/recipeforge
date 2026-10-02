@@ -1,7 +1,7 @@
-package Persistence;
+package persistence;
 
 import Util.SessionFactoryProvider;
-import entity.Recipe;
+import entity.User;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Root;
@@ -14,119 +14,119 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 import java.util.List;
 
-public class RecipeDao {
+public class UserDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Get recipe by id
+     * Get user by id
      */
-    public Recipe getById(int id) {
+    public User getById(int id) {
         Session session = sessionFactory.openSession();
-        Recipe recipe = session.get(Recipe.class, id);
+        User user = session.get(User.class, id);
         session.close();
-        return recipe;
+        return user;
     }
 
     /**
-     * update recipe
-     * @param recipe  Recipe to be updated
+     * update user
+     * @param user  User to be updated
      */
-    public void update(Recipe recipe) {
+    public void update(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.merge(recipe);
+        session.merge(user);
         transaction.commit();
         session.close();
     }
 
     /**
-     * insert a new recipe
-     * @param recipe  Recipe to be inserted
+     * insert a new user
+     * @param user  User to be inserted
      */
-    public int insert(Recipe recipe) {
+    public int insert(User user) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.persist(recipe);
+        session.persist(user);
         transaction.commit();
-        id = recipe.getRecipeId();
+        id = user.getUserId();
         session.close();
         return id;
     }
 
     /**
-     * Delete a recipe
-     * @param recipe Recipe to be deleted
+     * Delete a user
+     * @param user User to be deleted
      */
-    public void delete(Recipe recipe) {
+    public void delete(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(recipe);
+        session.delete(user);
         transaction.commit();
         session.close();
     }
 
 
-    /** Return a list of all recipes
+    /** Return a list of all users
      *
-     * @return All recipes
+     * @return All users
      */
-    public List<Recipe> getAll() {
+    public List<User> getAll() {
         try (Session session = sessionFactory.openSession()) {
             HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
-            Root<Recipe> root = query.from(Recipe.class);
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
 
             query.select(root);
 
-            List<Recipe> recipes =
+            List<User> users =
                     session.createSelectionQuery(query).getResultList();
 
-            logger.debug("The list of recipes {}", recipes);
-            return recipes;
+            logger.debug("The list of users {}", users);
+            return users;
         }
     }
 
     /**
-     * Get recipe by property (exact match)
+     * Get user by property (exact match)
      * sample usage: getByPropertyEqual("lastname", "Curry")
      */
-    public List<Recipe> getByPropertyEqual(String propertyName, String value) {
+    public List<User> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for recipe with {} = {}", propertyName, value);
+        logger.debug("Searching for user with {} = {}", propertyName, value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
-        Root<Recipe> root = query.from(Recipe.class);
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
         query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<Recipe> recipes = session.createSelectionQuery( query ).getResultList();
+        List<User> users = session.createSelectionQuery( query ).getResultList();
 
         session.close();
-        return recipes;
+        return users;
     }
 
     /**
-     * Get recipe by property (like)
+     * Get user by property (like)
      * sample usage: getByPropertyLike("lastname", "C")
      */
-    public List<Recipe> getByPropertyLike(String propertyName, String value) {
+    public List<User> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for recipe with {} = {}",  propertyName, value);
+        logger.debug("Searching for user with {} = {}",  propertyName, value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
-        Root<Recipe> root = query.from(Recipe.class);
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
         Expression<String> propertyPath = root.get(propertyName);
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<Recipe> recipes = session.createQuery( query ).getResultList();
+        List<User> users = session.createQuery( query ).getResultList();
         session.close();
-        return recipes;
+        return users;
     }
 
 }

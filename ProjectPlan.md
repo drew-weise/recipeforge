@@ -42,7 +42,7 @@ N/A
 
 ### Week 5
 
-- [ ] Create the Recipe entity
+- [x] Create the Recipe entity
 - [ ] Create the Ingredient entity
 - [ ] Create the RecipeIngredient entity
 - [ ] Finish the Hibernate mappings and relationships

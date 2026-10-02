@@ -1,4 +1,4 @@
-package Persistence;
+package persistence;
 
 import entity.Recipe;
 import entity.User;
@@ -9,6 +9,7 @@ import Util.Database;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class UserDaoTest {
     UserDao userDao;
 
