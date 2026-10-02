@@ -19,3 +19,24 @@
 [DEBUG] 2026-09-30 12:56:27.158 [main] UserDao - The list of users [entity.User@2ffa91dc, entity.User@6de610c6]
 [DEBUG] 2026-09-30 12:56:27.180 [main] UserDao - Searching for user with username = drew123
 [DEBUG] 2026-09-30 12:56:27.207 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 13:09:36.404 [main] UserDao - The list of users [entity.User@63814bbe, entity.User@144e36ae]
+[DEBUG] 2026-09-30 13:09:36.430 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-09-30 13:09:36.464 [main] UserDao - Searching for user with username = drew123
+[DEBUG] 2026-10-02 09:33:24.440 [main] UserDao - Searching for user with DisplayName = drew123
+[DEBUG] 2026-10-02 09:33:24.462 [main] UserDao - Searching for user with DisplayName = drew123
+[DEBUG] 2026-10-02 09:35:40.336 [main] UserDao - The list of users [entity.User@7f4f1536, entity.User@70b196d3]
+[DEBUG] 2026-10-02 09:35:40.357 [main] UserDao - Searching for user with DisplayName = drew123
+[DEBUG] 2026-10-02 09:35:40.376 [main] UserDao - Searching for user with DisplayName = drew123
+[DEBUG] 2026-10-02 09:36:15.486 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:36:15.560 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:36:18.883 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:36:18.948 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:36:25.178 [main] UserDao - The list of users [entity.User@2804b13f, entity.User@69499c6f]
+[DEBUG] 2026-10-02 09:36:25.199 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:36:25.231 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:47:10.352 [main] UserDao - The list of users [entity.User@286a4c52, entity.User@44de8e00]
+[DEBUG] 2026-10-02 09:47:10.372 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:47:10.407 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:47:17.628 [main] UserDao - The list of users [entity.User@3ea84e01, entity.User@986b619]
+[DEBUG] 2026-10-02 09:47:17.647 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 09:47:17.678 [main] UserDao - Searching for user with displayName = drew123

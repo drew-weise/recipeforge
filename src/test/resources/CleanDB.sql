@@ -10,32 +10,31 @@ DROP TABLE IF EXISTS users;
 SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE users (
-                       id INT NOT NULL AUTO_INCREMENT,
-                       username VARCHAR(50) NOT NULL,
+                       user_id INT NOT NULL AUTO_INCREMENT,
+                       display_name VARCHAR(50) NOT NULL,
                        email VARCHAR(255) NOT NULL,
                        password_hash VARCHAR(255) NOT NULL,
-                       PRIMARY KEY (id),
-                       UNIQUE KEY username (username),
+                       PRIMARY KEY (user_id),
                        UNIQUE KEY email (email)
 ) ENGINE = InnoDB;
 
 CREATE TABLE recipes (
-                         id INT NOT NULL AUTO_INCREMENT,
+                         recipe_id INT NOT NULL AUTO_INCREMENT,
                          user_id INT NOT NULL,
                          title VARCHAR(255) NOT NULL,
                          description TEXT,
                          instructions TEXT,
                          servings INT,
-                         PRIMARY KEY (id),
+                         PRIMARY KEY (recipe_id),
                          KEY user_id (user_id),
                          CONSTRAINT recipes_ibfk_1
-                             FOREIGN KEY (user_id) REFERENCES users (id)
+                             FOREIGN KEY (user_id) REFERENCES users (user_id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE ingredients (
-                             id INT NOT NULL AUTO_INCREMENT,
+                             ingredient_id INT NOT NULL AUTO_INCREMENT,
                              name VARCHAR(100) NOT NULL,
-                             PRIMARY KEY (id),
+                             PRIMARY KEY (ingredient_id),
                              UNIQUE KEY ingredient_name (name)
 ) ENGINE = InnoDB;
 
@@ -46,19 +45,19 @@ CREATE TABLE recipe_ingredients (
                                     PRIMARY KEY (recipe_id, ingredient_id),
                                     KEY ingredient_id (ingredient_id),
                                     CONSTRAINT recipe_ingredients_ibfk_1
-                                        FOREIGN KEY (recipe_id) REFERENCES recipes (id)
+                                        FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
                                             ON DELETE CASCADE,
                                     CONSTRAINT recipe_ingredients_ibfk_2
-                                        FOREIGN KEY (ingredient_id) REFERENCES ingredients (id)
+                                        FOREIGN KEY (ingredient_id) REFERENCES ingredients (ingredient_id)
 ) ENGINE = InnoDB;
 
-INSERT INTO users (id, username, email, password_hash)
+INSERT INTO users (user_id, display_name, email, password_hash)
 VALUES
     (1, 'drew', 'drew@example.com', 'test-password-hash-1'),
     (2, 'alex', 'alex@example.com', 'test-password-hash-2');
 
 INSERT INTO recipes
-(id, user_id, title, description, instructions, servings)
+(recipe_id, user_id, title, description, instructions, servings)
 VALUES
     (
         1,
@@ -85,7 +84,7 @@ VALUES
         6
     );
 
-INSERT INTO ingredients (id, name)
+INSERT INTO ingredients (ingredient_id, name)
 VALUES
     (1, 'Flour'),
     (2, 'Eggs'),

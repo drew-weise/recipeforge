@@ -10,15 +10,15 @@ import jakarta.persistence.*;
  */
 public class User {
 
-    /** The user's database ID. */
+    /** The user's database userId. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "user_id")
+    private int userId;
 
-    /** The user's username. */
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+    /** The user's displayName. */
+    @Column(name = "display_name", nullable = false, unique = true)
+    private String displayName;
 
     /** The user's email address. */
     @Column(name = "email", nullable = false, unique = true)
@@ -33,25 +33,25 @@ public class User {
     }
 
     /** Creates a user with the given account information. */
-    public User(String username, String email, String passwordHash) {
-        this.username = username;
+    public User(String displayName, String email, String passwordHash) {
+        this.displayName = displayName;
         this.email = email;
         this.passwordHash = passwordHash;
     }
 
     /** @return the user's ID */
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    /** @return the user's username */
-    public String getUsername() {
-        return username;
+    /** @return the user's displayName */
+    public String getDisplayName() {
+        return displayName;
     }
 
-    /** Sets the user's username. */
-    public void setUsername(String username) {
-        this.username = username;
+    /** Sets the user's displayName. */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     /** @return the user's email */

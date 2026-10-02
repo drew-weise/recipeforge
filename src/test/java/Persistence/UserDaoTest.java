@@ -22,17 +22,17 @@ class UserDaoTest {
     void getByIdSuccess() {
         User user = userDao.getById(1);
         assertNotNull(user);
-        assertEquals("drew123",  user.getUsername());
+        assertEquals("drew123",  user.getDisplayName());
     }
 
     @Test
     void updateSuccess() {
         User userToUpdate = userDao.getById(1);
-        userToUpdate.setUsername("John");
+        userToUpdate.setDisplayName("John");
         userDao.update(userToUpdate);
 
         User  updatedUser = userDao.getById(1);
-        assertEquals("John", updatedUser.getUsername());
+        assertEquals("John", updatedUser.getDisplayName());
     }
 
     @Test
@@ -41,7 +41,7 @@ class UserDaoTest {
         int insertUserId = userDao.insert(user);
         assertNotEquals(0, insertUserId);
         User InsertedUser = userDao.getById(insertUserId);
-        assertEquals("Johnny123", InsertedUser.getUsername());
+        assertEquals("Johnny123", InsertedUser.getDisplayName());
     }
 
     @Test
@@ -58,15 +58,15 @@ class UserDaoTest {
 
     @Test
     void getByPropertyEqual() {
-        List<User> users = userDao.getByPropertyEqual("username", "drew123");
+        List<User> users = userDao.getByPropertyEqual("displayName", "drew123");
         assertEquals(1, users.size());
     }
 
     @Test
     void getByPropertyLike() {
-        List<User> users = userDao.getByPropertyLike("username", "drew123");
+        List<User> users = userDao.getByPropertyLike("displayName", "drew123");
 
         assertEquals(1, users.size());
-        assertEquals("drew123", users.get(0).getUsername());
+        assertEquals("drew123", users.get(0).getDisplayName());
     }
 }

@@ -51,7 +51,7 @@ public class UserDao {
         Transaction transaction = session.beginTransaction();
         session.persist(user);
         transaction.commit();
-        id = user.getId();
+        id = user.getUserId();
         session.close();
         return id;
     }
