@@ -10,9 +10,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests the CRUD and search operations provided by RecipeDao
+ *
+ */
 class RecipeDaoTest {
-    RecipeDao recipeDao;
 
+    private RecipeDao recipeDao;
+
+    /**
+     * Resets the test database and creates a new RecipeDao
+     * before each test.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -20,24 +29,37 @@ class RecipeDaoTest {
         recipeDao = new RecipeDao();
     }
 
+    /**
+     * Verifies that a recipe can be retrieved by its database ID.
+     */
     @Test
     void getByIdSuccess() {
         Recipe recipe = recipeDao.getById(1);
+
         assertNotNull(recipe);
-        assertEquals("Pancakes",  recipe.getRecipeTitle());
+        assertEquals("Pancakes", recipe.getRecipeTitle());
     }
 
+    /**
+     * Verifies that an existing recipe can be updated and retrieved
+     * with its changed title.
+     */
     @Test
     void updateSuccess() {
         Recipe recipeToUpdate = recipeDao.getById(1);
+
         recipeToUpdate.setRecipeTitle("Waffles");
         recipeDao.update(recipeToUpdate);
 
-        Recipe  updatedRecipe = recipeDao.getById(1);
+        Recipe updatedRecipe = recipeDao.getById(1);
+
         assertEquals("Waffles", updatedRecipe.getRecipeTitle());
     }
 
-
+    /**
+     * Verifies that a new recipe can be inserted, assigned a generated ID,
+     * retrieved, and associated with the correct user.
+     */
     @Test
     void insertSuccess() {
         User user = new UserDao().getById(1);
@@ -58,19 +80,29 @@ class RecipeDaoTest {
 
         assertNotNull(insertedRecipe);
         assertEquals("Avocado Toast", insertedRecipe.getRecipeTitle());
-        assertEquals("Toast with Avocado Spread and an Egg", insertedRecipe.getRecipeDescription());
+        assertEquals(
+                "Toast with Avocado Spread and an Egg",
+                insertedRecipe.getRecipeDescription()
+        );
         assertEquals(2, insertedRecipe.getRecipeServings());
         assertNotNull(insertedRecipe.getUser());
         assertEquals(1, insertedRecipe.getUser().getUserId());
     }
 
-
+    /**
+     * Verifies that an existing recipe can be deleted and can no longer
+     * be retrieved by its ID.
+     */
     @Test
-    void delete() {
+    void deleteSuccess() {
         recipeDao.delete(recipeDao.getById(1));
+
         assertNull(recipeDao.getById(1));
     }
 
+    /**
+     * Verifies that all recipes in the reset test database are returned.
+     */
     @Test
     void getAllSuccess() {
         List<Recipe> recipes = recipeDao.getAll();
@@ -79,15 +111,24 @@ class RecipeDaoTest {
         assertEquals(4, recipes.size());
     }
 
+    /**
+     * Verifies that an exact recipe title can be searched successfully.
+     */
     @Test
     void getByPropertyEqual() {
-        List<Recipe> recipes = recipeDao.getByPropertyEqual("recipeTitle", "Pancakes");
+        List<Recipe> recipes =
+                recipeDao.getByPropertyEqual("recipeTitle", "Pancakes");
+
         assertEquals(1, recipes.size());
     }
 
+    /**
+     * Verifies that a recipe title can be searched using a partial match.
+     */
     @Test
     void getByPropertyLike() {
-        List<Recipe> recipes = recipeDao.getByPropertyLike("recipeTitle", "pan");
+        List<Recipe> recipes =
+                recipeDao.getByPropertyLike("recipeTitle", "pan");
 
         assertEquals(1, recipes.size());
         assertEquals("Pancakes", recipes.get(0).getRecipeTitle());

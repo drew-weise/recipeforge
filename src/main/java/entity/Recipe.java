@@ -2,44 +2,48 @@ package entity;
 
 import jakarta.persistence.*;
 
-/**
- * Represents a Recipe in RecipeForge
- */
 @Entity
 @Table(name = "recipes")
+/**
+ * Represents a Recipe in RecipeForge.
+ *
+ * @author dweise
+ */
 public class Recipe {
 
-    /**  INSTANCE VARIABLES */
+    /** The recipe's database recipeId. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_id")
     private int recipeId;
 
+    /** The recipe's recipeTitle. */
     @Column(name = "title", nullable = false)
     private String recipeTitle;
 
+    /** The recipe's recipeDescription. */
     @Column(name = "description")
     private String recipeDescription;
 
+    /** The recipe's recipeInstruction. */
     @Column(name = "instructions")
     private String recipeInstruction;
 
+    /** The recipe's recipeServings. */
     @Column(name = "servings")
     private int recipeServings;
 
+    /** The recipe's user. */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-
-    /**
-     * Instantiates a new Recipe.
-     */
+    /** Required by Hibernate. */
     public Recipe() {
     }
 
     /**
-     * Instantiates a new Recipe.
+     * Creates a new Recipe.
      *
      * @param recipeTitle       the recipe title
      * @param recipeDescription the recipe description
@@ -55,114 +59,47 @@ public class Recipe {
         this.user = user;
     }
 
-    /**
-     * Gets user.
-     *
-     * @return the user
-     */
-    public User getUser() {
-        return user;
-    }
+    /** @return the recipe id */
+    public int getRecipeId() {return recipeId;}
 
-    /**
-     * Sets user.
-     *
-     * @param user the user
-     */
-    public void setUser(User user) {
-        this.user = user;
-    }
+    /** @return the user */
+    public User getUser() {return user;}
 
-    /**
-     * Gets recipe id.
-     *
-     * @return the recipe id
-     */
-    public int getRecipeId() {
-        return recipeId;
-    }
+    /** Sets the user. */
+    public void setUser(User user) {this.user = user;}
 
-    /**
-     * Gets recipe title.
-     *
-     * @return the recipe title
-     */
-    public String getRecipeTitle() {
-        return recipeTitle;
-    }
+    /** @return the recipe title */
+    public String getRecipeTitle() {return recipeTitle;}
 
-    /**
-     * Sets recipe title.
-     *
-     * @param recipeTitle the recipe title
-     */
-    public void setRecipeTitle(String recipeTitle) {
-        this.recipeTitle = recipeTitle;
-    }
+    /** Sets the recipe title. */
+    public void setRecipeTitle(String recipeTitle) {this.recipeTitle = recipeTitle;}
 
-    /**
-     * Gets recipe description.
-     *
-     * @return the recipe description
-     */
-    public String getRecipeDescription() {
-        return recipeDescription;
-    }
+    /** @return the recipe description */
+    public String getRecipeDescription() {return recipeDescription;}
 
-    /**
-     * Sets recipe description.
-     *
-     * @param recipeDescription the recipe description
-     */
-    public void setRecipeDescription(String recipeDescription) {
-        this.recipeDescription = recipeDescription;
-    }
+    /** Sets the recipe description. */
+    public void setRecipeDescription(String recipeDescription) {this.recipeDescription = recipeDescription;}
 
-    /**
-     * Gets recipe instruction.
-     *
-     * @return the recipe instruction
-     */
-    public String getRecipeInstruction() {
-        return recipeInstruction;
-    }
+    /** @return the recipe instruction */
+    public String getRecipeInstruction() {return recipeInstruction;}
 
-    /**
-     * Sets recipe instruction.
-     *
-     * @param recipeInstruction the recipe instruction
-     */
-    public void setRecipeInstruction(String recipeInstruction) {
-        this.recipeInstruction = recipeInstruction;
-    }
+    /** Sets the recipe instruction. */
+    public void setRecipeInstruction(String recipeInstruction) {this.recipeInstruction = recipeInstruction;}
 
-    /**
-     * Gets recipe servings.
-     *
-     * @return the recipe servings
-     */
-    public int getRecipeServings() {
-        return recipeServings;
-    }
+    /** @return the recipe servings */
+    public int getRecipeServings() {return recipeServings;}
 
-    /**
-     * Sets recipe servings.
-     *
-     * @param recipeServings the recipe servings
-     */
-    public void setRecipeServings(int recipeServings) {
-        this.recipeServings = recipeServings;
-    }
-
+    /** Sets the recipe servings. */
+    public void setRecipeServings(int recipeServings) {this.recipeServings = recipeServings;}
 
     @Override
     public String toString() {
         return "Recipe{" +
-                "recipeId='" + recipeId + '\'' +
+                "recipeId=" + recipeId +
                 ", recipeTitle='" + recipeTitle + '\'' +
                 ", recipeDescription='" + recipeDescription + '\'' +
                 ", recipeInstruction='" + recipeInstruction + '\'' +
-                ", recipeServings='" + recipeServings + '\'' +
+                ", recipeServings=" + recipeServings +
                 '}';
     }
 }
