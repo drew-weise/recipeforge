@@ -74,18 +74,19 @@ public class UserDao {
      * @return All users
      */
     public List<User> getAll() {
+        try (Session session = sessionFactory.openSession()) {
+            HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
 
-        Session session = sessionFactory.openSession();
+            query.select(root);
 
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        List<User> users = session.createSelectionQuery( query ).getResultList();
+            List<User> users =
+                    session.createSelectionQuery(query).getResultList();
 
-        logger.debug("The list of users {}", users);
-        session.close();
-
-        return users;
+            logger.debug("The list of users {}", users);
+            return users;
+        }
     }
 
     /**

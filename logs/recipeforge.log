@@ -40,3 +40,6 @@
 [DEBUG] 2026-10-02 09:47:17.628 [main] UserDao - The list of users [entity.User@3ea84e01, entity.User@986b619]
 [DEBUG] 2026-10-02 09:47:17.647 [main] UserDao - Searching for user with displayName = drew123
 [DEBUG] 2026-10-02 09:47:17.678 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 10:12:42.027 [main] UserDao - The list of users [entity.User@7283877, entity.User@3e2c4d4b]
+[DEBUG] 2026-10-02 10:12:42.048 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 10:12:42.082 [main] UserDao - Searching for user with displayName = drew123
