@@ -43,3 +43,18 @@
 [DEBUG] 2026-10-02 10:12:42.027 [main] UserDao - The list of users [entity.User@7283877, entity.User@3e2c4d4b]
 [DEBUG] 2026-10-02 10:12:42.048 [main] UserDao - Searching for user with displayName = drew123
 [DEBUG] 2026-10-02 10:12:42.082 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 10:55:37.651 [main] RecipeDao - The list of recipes [Recipe{recipeId='1', recipeTitle='Pancakes', recipeDescription='Simple breakfast pancakes.', recipeInstruction='Mix the ingredients. Heat a pan. Pour the batter into the pan. Cook each pancake until golden brown on both sides.', recipeServings='4'}, Recipe{recipeId='2', recipeTitle='Garlic Pasta', recipeDescription='Quick pasta with garlic and olive oil.', recipeInstruction='Boil the pasta. Cook the garlic in olive oil. Toss the pasta with the garlic and serve.', recipeServings='2'}, Recipe{recipeId='3', recipeTitle='Vegetable Soup', recipeDescription='A basic vegetable soup with potatoes and carrots.', recipeInstruction='Chop the vegetables. Add the vegetables and broth to a pot. Simmer until the vegetables are tender.', recipeServings='6'}, Recipe{recipeId='4', recipeTitle='Chicken Tacos', recipeDescription='Seasoned chicken tacos with fresh toppings.', recipeInstruction='Cook the seasoned chicken. Warm the tortillas. Add the chicken and toppings to each tortilla.', recipeServings='4'}]
+[DEBUG] 2026-10-02 10:57:51.033 [main] RecipeDao - Searching for recipe with title = Pancakes
+[DEBUG] 2026-10-02 10:58:14.890 [main] RecipeDao - Searching for recipe with recipeTitle = Pancakes
+[DEBUG] 2026-10-02 10:58:23.885 [main] RecipeDao - Searching for recipe with recipeTitle = Pancake
+[DEBUG] 2026-10-02 10:59:34.617 [main] RecipeDao - Searching for recipe with recipeTitle = p
+[DEBUG] 2026-10-02 10:59:55.407 [main] RecipeDao - Searching for recipe with recipeTitle = pa
+[DEBUG] 2026-10-02 11:00:13.835 [main] RecipeDao - Searching for recipe with recipeTitle = pa
+[DEBUG] 2026-10-02 11:00:19.356 [main] RecipeDao - Searching for recipe with recipeTitle = Pancakes
+[DEBUG] 2026-10-02 11:02:31.511 [main] RecipeDao - Searching for recipe with recipeTitle = pan
+[DEBUG] 2026-10-02 11:29:13.273 [main] UserDao - The list of users [entity.User@7fb44737, entity.User@58f50dd0]
+[DEBUG] 2026-10-02 11:29:13.300 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 11:29:13.347 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 11:31:57.604 [main] UserDao - The list of users [entity.User@bf4e48e, entity.User@2b974137]
+[DEBUG] 2026-10-02 11:31:57.632 [main] UserDao - Searching for user with displayName = drew123
+[DEBUG] 2026-10-02 11:31:57.664 [main] UserDao - Searching for user with displayName = drew123

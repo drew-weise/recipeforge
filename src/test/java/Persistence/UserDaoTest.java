@@ -1,5 +1,6 @@
 package Persistence;
 
+import entity.Recipe;
 import entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ class UserDaoTest {
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
-        database.runSQL("CleanUsersDB.sql");
+        database.runSQL("CleanUsersAndRecipesDB.sql");
         userDao = new UserDao();
     }
 
@@ -45,25 +46,46 @@ class UserDaoTest {
     }
 
     @Test
-    void delete() {
+    void deleteSuccess() {
         userDao.delete(userDao.getById(1));
         assertNull(userDao.getById(1));
     }
 
     @Test
-    void getAll() {
+    void deleteWithRecipesSuccess() {
+
+        User userToDelete = userDao.getById(1);
+        assertNotNull(userToDelete);
+
+        List<Recipe> recipes = userToDelete.getRecipes();
+        assertEquals(2, recipes.size());
+
+        Recipe recipe1 =  recipes.get(0);
+        Recipe recipe2 = recipes.get(1);
+
+        userDao.delete(userToDelete);
+        assertNull(userDao.getById(1));
+
+        RecipeDao recipeDao = new RecipeDao();
+        assertNull(recipeDao.getById(1));
+        assertNull(recipeDao.getById(2));
+    }
+
+
+    @Test
+    void getAllSuccess() {
         List<User> users = userDao.getAll();
         assertEquals(2, users.size());
     }
 
     @Test
-    void getByPropertyEqual() {
+    void getByPropertyEqualSuccess() {
         List<User> users = userDao.getByPropertyEqual("displayName", "drew123");
         assertEquals(1, users.size());
     }
 
     @Test
-    void getByPropertyLike() {
+    void getByPropertyLikeSuccess() {
         List<User> users = userDao.getByPropertyLike("displayName", "drew123");
 
         assertEquals(1, users.size());

@@ -14,14 +14,19 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_id")
     private int recipeId;
+
     @Column(name = "title", nullable = false)
     private String recipeTitle;
+
     @Column(name = "description")
     private String recipeDescription;
+
     @Column(name = "instructions")
     private String recipeInstruction;
+
     @Column(name = "servings")
     private int recipeServings;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -33,7 +38,6 @@ public class Recipe {
     public Recipe() {
     }
 
-
     /**
      * Instantiates a new Recipe.
      *
@@ -43,8 +47,30 @@ public class Recipe {
      * @param recipeServings    the recipe servings
      * @param user              the user
      */
-    public Recipe(String recipeTitle, String recipeDescription, String recipeInstruction, String recipeServings, User user) {
-        this.recipeId = recipeId;
+    public Recipe(String recipeTitle, String recipeDescription, String recipeInstruction, int recipeServings, User user) {
+        this.recipeTitle = recipeTitle;
+        this.recipeDescription = recipeDescription;
+        this.recipeInstruction = recipeInstruction;
+        this.recipeServings = recipeServings;
+        this.user = user;
+    }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**

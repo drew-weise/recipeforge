@@ -2,6 +2,9 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 /**
@@ -15,8 +18,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int userId;
-
     /** The user's displayName. */
+
     @Column(name = "display_name", nullable = false, unique = true)
     private String displayName;
 
@@ -27,6 +30,14 @@ public class User {
     /** The user's stored password hash. */
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<Recipe> recipes = new ArrayList<>();
 
     /** Required by Hibernate. */
     public User() {
@@ -43,6 +54,12 @@ public class User {
     public int getUserId() {
         return userId;
     }
+
+    /** @return the user's recipes */
+    public List<Recipe> getRecipes() {return recipes;}
+
+    /** Sets the user's recipes */
+    public void setRecipes(List<Recipe> recipes) {this.recipes = recipes;}
 
     /** @return the user's displayName */
     public String getDisplayName() {
