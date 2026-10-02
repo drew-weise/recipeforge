@@ -6,6 +6,10 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * This file provides a SessionFactory for use with DAOs using Hibernate
  *
@@ -22,8 +26,35 @@ public class SessionFactoryProvider {
      */
     public static void createSessionFactory() {
 
+        Properties databaseProperties = new Properties();
+
+        try (InputStream inputStream = SessionFactoryProvider.class
+                .getClassLoader()
+                .getResourceAsStream("database.properties")) {
+
+            if (inputStream == null) {
+                throw new IllegalStateException(
+                        "database.properties could not be found on the classpath");
+            }
+
+            databaseProperties.load(inputStream);
+        } catch (IOException exception) {
+            throw new IllegalStateException(
+                    "Unable to load database.properties", exception);
+        }
+
         // Create registry
-        registry = new StandardServiceRegistryBuilder().configure().build();
+        registry = new StandardServiceRegistryBuilder()
+                .configure()
+                .applySetting("hibernate.connection.driver_class",
+                        databaseProperties.getProperty("driver"))
+                .applySetting("hibernate.connection.url",
+                        databaseProperties.getProperty("url"))
+                .applySetting("hibernate.connection.username",
+                        databaseProperties.getProperty("username"))
+                .applySetting("hibernate.connection.password",
+                        databaseProperties.getProperty("password"))
+                .build();
 
         // Create MetadataSources
         MetadataSources sources = new MetadataSources(registry);
